@@ -134,12 +134,8 @@ then
 -setgt) if [-n "$2"] #Установка Gateway для определенного интерфейса(надеюсь)
 
 then 		
-if [-n "$3"]
-then 
-			sudo ifconfig $2 gateway $3
-		else
-		echo "Too few arguments"
-		fi
+ 
+			ip route add default via $2
 	else
 	echo "Too few arguments"
 	fi;;
