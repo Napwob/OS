@@ -77,9 +77,13 @@ echo "    bash lab1.sh -setnm lo 255.255.255.0"
 
 ;;
 
--kproc)
-    kill -9 $(lsof -t -i4:$2);;
+-kproc) if [ -n "$2" ] 
+then
+    sudo killall $2
+else
+		echo "Too low arguments"
 
+	fi;;
 
 
 -alnetin) sudo ifconfig;; #вывод всех сетевых интерфейсов
@@ -107,9 +111,9 @@ else
 echo "Too few arguments"
 fi;;
 
--setip) if [-n "$2"] #Установка IP для определенного интерфейса
+-setip) if [ -n "$2" ] #Установка IP для определенного интерфейса
 	then 
-		if [-n "$3"]
+		if [ -n "$3" ] 
 then 
 			sudo ifconfig $2 $3
 		else
@@ -119,9 +123,9 @@ then
 	echo "Too few arguments"
 	fi;;
 
--setnm) if [-n "$2"] #Установка Mask для определенного интерфейса
+-setnm) if [ -n "$2" ] #Установка Mask для определенного интерфейса
 then 
-		if [-n "$3"]
+		if [ -n "$3" ]
 then 
 			sudo ifconfig $2 netmask $3
 		else
@@ -131,11 +135,11 @@ then
 	echo "Too few arguments"
 	fi;;
 
--setgt) if [-n "$2"] #Установка Gateway для определенного интерфейса(надеюсь)
+-setgt) if [ -n "$2" ] #Установка Gateway для определенного интерфейса(надеюсь)
 
 then 		
  
-			ip route add default via $2
+			sudo ip route add default via $2
 	else
 	echo "Too few arguments"
 	fi;;
